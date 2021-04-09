@@ -25,8 +25,8 @@ function startGame(initialHunger) {
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
-        this.canvas.width = 800;
-        this.canvas.height = 370;
+        this.canvas.width = 1200;
+        this.canvas.height = 700;
         this.context = this.canvas.getContext("2d");
         // var ctx = myGameArea.context;
         // bg_color = ctx.getImageData(1,1,1,1).data;
@@ -111,68 +111,56 @@ function robot(width, height, color, x, y) {
             
             if(!onFeedingCourse){
                 if(leftsensorValue[0]==bg_color[0]){
-                    // this.speed=0;
-                    // flag=1;
-                    flag=1;
-                    flagger=1;
+            
                     this.steerLeft();
                 }
                 if(rightsensorValue[0]==bg_color[0]){
-                    // this.speed=0;
-                    // flag=1;
-                    flag=1;
-                    flagger=1;
+
                     this.steerRight();
                 }
                 
                 if(leftsensorValue[0]==fd_color[0]&&hungerLevel<=500){
                     // onFeedingCourse = 1;
                     this.onFeedingCourse=1;
-                    flag=1;
-                    flagger=1;
-                    // this.speed=0;
+    
                     this.steerLeft();
                 }
                 if(rightsensorValue[0]==fd_color[0]&&hungerLevel<=500){
                     // onFeedingCourse = 1;
                     this.onFeedingCourse=1;
-                    flag=1;
-                    flagger=1;
-                    // this.speed=0;
+    
                     this.steerRight();
                 }
             }
 
           else  if(onFeedingCourse){
                 if(leftsensorValue[0]==fd_color[0]){
-                    // this.speed=0;
-                    // flag=1;
-                    flag=1;
-                    flagger=1;
+
                     this.steerLeft();
                 }
                 if(rightsensorValue[0]==fd_color[0]){
-                    // this.speed=0;
-                    // flag=1;
-                    flag=1;
-                    flagger=1;
+  
                     this.steerRight();
                 }
-                if(leftsensorValue[0]==bg_color[0]){
-                    // this.speed=0;
-                    // onFeedingCourse = 0;
+                if(leftsensorValue[0]==bg_color[0]&&hungerLevel>=500){
+
                     this.onFeedingCourse=0;
-                    flag=1;
-                    flagger=1;
+                    this.speed = 2;
                     this.steerLeft();
                 }
-                if(rightsensorValue[0]==bg_color[0]){
-                    // this.speed=0;
-                    // onFeedingCourse = 0;
+                else if (leftsensorValue[0]==bg_color[0]&&hungerLevel<500){
+                    this.speed = 0;
+
+                }
+                if(rightsensorValue[0]==bg_color[0]&&hungerLevel>=500){
+
                     this.onFeedingCourse=0;
-                    flag=1;
-                    flagger=1;
+                    this.speed = 2;
                     this.steerRight();
+                }
+                else if (rightsensorValue[0]==bg_color[0]&&hungerLevel<500){
+                    this.speed = 0;
+                    
                 }
 
             }
@@ -197,27 +185,9 @@ function updateGameArea() {
     hungerCount+=1;
     myGamePiece.newPos();
     myGamePiece.update();
-    if(flagger){
-        if(flag==1){
-            count5 = hungerCount;
-            flag=0;
-        }
-        if(hungerCount-count5>2){
-            myGamePiece.steering();
-            // flag=0;
-            flagger = 0;
-        }
-        
-    }
-    else{
-        myGamePiece.steering();
-    }
-   console.log(flag);
+    myGamePiece.steering();
+    console.log(flag);
     
     myHunger.update(hungerCount);
-    // myGamePiece.newPos();
-    // myGamePiece.update();
 
-
-    // console.log(myGamePiece.speed);
 }

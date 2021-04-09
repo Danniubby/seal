@@ -16,6 +16,10 @@ function map(){
     context.stroke();
 
     context.moveTo(120, 50);
+    context.lineTo(230, 50);
+    context.stroke();
+
+    context.moveTo(330, 50);
     context.lineTo(420, 50);
     context.stroke();
 
@@ -24,23 +28,26 @@ function map(){
     context.stroke();
 
     context.moveTo(420, 135);
-    context.lineTo(260, 135);
+    context.lineTo(330, 135);
     context.stroke();
 
+    context.moveTo(250, 135);
+    context.lineTo(120, 135);
+    context.stroke();
     //xxxxxxxxxxxxxxxxxxxxxxx
     context.strokeStyle = "#ff0000";
     context.beginPath();
     context.lineWidth = 3;
 
     context.moveTo(230,50);
-    context.lineTo(230,20);
+    context.lineTo(230,10);
     context.stroke();
 
-    context.moveTo(230,20);
-    context.lineTo(330,20);
+    context.moveTo(230,10);
+    context.lineTo(330,10);
     context.stroke();
 
-    context.moveTo(330,20);
+    context.moveTo(330,10);
     context.lineTo(330,50);
     context.stroke();
 
